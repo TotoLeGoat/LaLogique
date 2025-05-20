@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage à travers l'évolution</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Page1.css">
+  <style>
+    /* ...tu peux garder tes styles personnalisés ici... */
+  </style>
+</head>
+<body style="display:none">
+  <script>
+    // Sécurité : vérifie la connexion
+    if(sessionStorage.getItem('isConnected') !== 'yes') {
+      window.location.href = "index.html";
+    } else {
+      document.body.style.display = "";
+    }
+  </script>
+  <div class="decor" id="decor"></div>
+  <div class="container-voyage">
+    <img src="img/Cellule.PNG" alt="ADN" class="cellule-img" id="celluleImg">
+    <h1>Voyage à travers l'évolution</h1>
+    <div class="desc">
+      Bienvenue !<br>
+      Explore l’histoire fascinante de la vie, de la première cellule jusqu’à l’homme moderne.<br>
+      <span style="color:#ffe066;font-weight:bold;">Découvre, apprends et amuse-toi !</span>
+    </div>
+    
+    <button class="btn-voyage" id="startBtn">Commencer le voyage</button>
+    <button class="btn-secondary" id="logoutBtn">Déconnexion</button>
+  </div>
+  <script>
+    window.onload = function() {
+      // Déconnexion
+      document.getElementById('logoutBtn').onclick = function() {
+        sessionStorage.removeItem('isConnected');
+        window.location.href = "index.html";
+      };
+
+      // Décor animé : bulles lumineuses avec apparition progressive
+      const decor = document.getElementById('decor');
+      for(let i=0; i<18; i++) {
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        b.style.width = b.style.height = (40 + Math.random()*90) + 'px';
+        b.style.left = (Math.random()*100) + 'vw';
+        b.style.bottom = (-30 - Math.random()*60) + 'px';
+        b.style.animationDuration = (8 + Math.random()*8) + 's';
+        b.style.opacity = 0;
+        decor.appendChild(b);
+        setTimeout(() => { b.style.opacity = 0.7; }, 100 + i*80);
+      }
+
+      // Animation sur clic du bouton
+      document.getElementById('startBtn').onclick = function(e) {
+        e.preventDefault();
+        // Crée l'image animée ADN au centre
+        const animImg = document.createElement('img');
+        animImg.src = "img/ADN.PNG";
+        animImg.alt = "ADN";
+        animImg.style.position = "fixed";
+        animImg.style.left = "50%";
+        animImg.style.top = "50%";
+        animImg.style.transform = "translate(-50%, -50%)";
+        animImg.style.width = "220px";
+        animImg.style.height = "220px";
+        animImg.style.borderRadius = "50%";
+        animImg.style.zIndex = "10000";
+        animImg.style.boxShadow = "0 0 64px #ffe066cc, 0 0 24px #ffbb00cc";
+        animImg.style.background = "#222";
+        animImg.style.pointerEvents = "none";
+        animImg.style.animation = "zoomRotateIn 1.2s cubic-bezier(.7,1.6,.5,1) forwards";
+        document.body.appendChild(animImg);
+
+        document.getElementById('startBtn').disabled = true;
+        document.getElementById('logoutBtn').disabled = true;
+
+        setTimeout(() => {
+          window.location.href = "Page2.html";
+        }, 1200);
+      };
+    };
+  </script>
+</body>
+</html>

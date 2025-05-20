@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Voyage à travers l'évolution</title>
+    <link rel="stylesheet" href="acceuil.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="main-navbar">
+            <a href="acceuil.html" class="main-navbar-link active">Accueil</a>
+            <a href="Page2.html" class="main-navbar-link">Frise</a>
+            <a href="https://fr.wikipedia.org/wiki/%C3%89volution" class="main-navbar-link" target="_blank">Wiki</a>
+            <a href="#" class="main-navbar-link" id="miniContact">Contact</a>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="hero">
+            <h1>
+                Bienvenue sur <span class="highlight">Voyage à travers l'évolution</span>
+            </h1>
+            <p class="subtitle">
+                Explorez 4 milliards d'années d'histoire, de la première cellule à l'Homme moderne.<br>
+                Découvrez, apprenez et amusez-vous à travers une frise interactive et des contenus passionnants !
+            </p>
+            <a href="Page2.html" class="cta-btn" id="mainCtaBtn">Commencer le voyage</a>
+        </section>
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🦠</div>
+                <h3>Découverte</h3>
+                <p>Plongez dans les grandes étapes de l'évolution de la vie sur Terre.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧬</div>
+                <h3>Frise interactive</h3>
+                <p>Visualisez les événements clés grâce à une frise chronologique animée.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Culture & Savoirs</h3>
+                <p>Accédez à des ressources et liens pour approfondir vos connaissances.</p>
+            </div>
+        </section>
+        <section class="culturelle-section">
+            <h2>
+                <span class="culturelle-title">L'évolution culturelle de l'Homme moderne</span>
+            </h2>
+            <div class="culturelle-cards">
+                <div class="culturelle-card">
+                    <div class="culturelle-icon">🗣️</div>
+                    <h3>Langage & Communication</h3>
+                    <p>Le langage a permis la transmission des savoirs et la naissance des sociétés.</p>
+                </div>
+                <div class="culturelle-card">
+                    <div class="culturelle-icon">🎨</div>
+                    <h3>Art & Symboles</h3>
+                    <p>L’art exprime émotions, croyances et identité à travers les âges.</p>
+                </div>
+                <div class="culturelle-card">
+                    <div class="culturelle-icon">🛠️</div>
+                    <h3>Techniques & Inventions</h3>
+                    <p>Outils, écriture, informatique… Les inventions transforment notre quotidien.</p>
+                </div>
+                <div class="culturelle-card">
+                    <div class="culturelle-icon">🏛️</div>
+                    <h3>Sociétés & Civilisations</h3>
+                    <p>La culture façonne lois, religions, traditions et diversité humaine.</p>
+                </div>
+                <div class="culturelle-card">
+                    <div class="culturelle-icon">🌐</div>
+                    <h3>Échanges & Mondialisation</h3>
+                    <p>Les échanges enrichissent les cultures et rapprochent l’humanité.</p>
+                </div>
+            </div>
+            <a href="page4.html" class="cta-btn secondaire">
+                Explorer l'évolution culturelle
+            </a>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Voyage à travers l'évolution. Tous droits réservés.</p>
+    </footer>
+    <!-- Popup Contact -->
+    <div id="contactPopup" class="popup-contact" style="display:none;">
+        <h2>Contact</h2>
+        <p>Pour toute question, écris à :<br>
+            <a href="mailto:theo.gaudino@lpo-eme.fr">theo.gaudino@lpo-eme.fr</a>
+        </p>
+        <button id="closeContactBtn">Fermer</button>
+    </div>
+    <script>
+        // Popup contact
+        document.getElementById('miniContact').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('contactPopup').style.display = 'block';
+        };
+        document.getElementById('closeContactBtn').onclick = function() {
+            document.getElementById('contactPopup').style.display = 'none';
+        };
+        // Animation joyeuse sur le bouton principal
+        document.getElementById('mainCtaBtn').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.12) rotate(-2deg)';
+            this.style.boxShadow = '0 0 32px #ffe066cc, 0 0 12px #232946, 0 0 60px #ffbb0077';
+        });
+        document.getElementById('mainCtaBtn').addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
+    </script>
+</body>
+</html>

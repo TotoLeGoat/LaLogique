@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'évolution culturelle de l'Homme moderne</title>
+    <link rel="stylesheet" href="page4.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="museum-header">
+        <nav class="main-navbar">
+            <a href="acceuil.html" class="main-navbar-link">Accueil</a>
+            <a href="Page2.html" class="main-navbar-link">Frise</a>
+            <a href="page4.html" class="main-navbar-link active">Culture</a>
+            <a href="#" class="main-navbar-link" id="miniContact">Contact</a>
+        </nav>
+        <h1 class="museum-title">L'évolution culturelle de l'Homme moderne</h1>
+        <p class="museum-subtitle">Parcourez les grandes étapes de la culture humaine comme si vous étiez dans un musée !</p>
+    </header>
+    <main class="museum-main">
+        <section class="museum-intro">
+            <h2>Qu’est-ce que l’évolution culturelle ?</h2>
+            <p>
+                L’évolution culturelle désigne l’ensemble des transformations des comportements, des connaissances, des techniques, des croyances et des modes de vie de l’Homme moderne.<br>
+                Contrairement à l’évolution biologique, elle se transmet par l’apprentissage, l’imitation et l’invention.<br><br>
+                Depuis l’apparition du langage, l’être humain a su créer des outils, des œuvres d’art, des sociétés organisées et des technologies qui ont bouleversé son quotidien et son rapport au monde.
+            </p>
+        </section>
+        <section class="museum-gallery">
+            <div class="museum-room" style="--accent:#e07a5f;">
+                <div class="museum-artifact" data-popup="langage">
+                    <div class="museum-artifact-icon">🗣️</div>
+                    <h2>Langage & Communication</h2>
+                    <p>Le développement du langage a permis la transmission des savoirs, la coopération et la naissance des premières sociétés structurées.</p>
+                </div>
+            </div>
+            <div class="museum-room" style="--accent:#81b29a;">
+                <div class="museum-artifact" data-popup="art">
+                    <div class="museum-artifact-icon">🎨</div>
+                    <h2>Art & Symboles</h2>
+                    <p>Des peintures rupestres aux œuvres modernes, l'art exprime les émotions, les croyances et l'identité des peuples à travers les âges.</p>
+                </div>
+            </div>
+            <div class="museum-room" style="--accent:#f2cc8f;">
+                <div class="museum-artifact" data-popup="techniques">
+                    <div class="museum-artifact-icon">🛠️</div>
+                    <h2>Techniques & Inventions</h2>
+                    <p>Outils, agriculture, écriture, imprimerie, informatique... Les inventions humaines ont transformé notre quotidien et notre environnement.</p>
+                </div>
+            </div>
+            <div class="museum-room" style="--accent:#3d405b;">
+                <div class="museum-artifact" data-popup="societes">
+                    <div class="museum-artifact-icon">🏛️</div>
+                    <h2>Sociétés & Civilisations</h2>
+                    <p>La culture façonne les lois, les religions, les traditions et les modes de vie, donnant naissance à la diversité des civilisations humaines.</p>
+                </div>
+            </div>
+            <div class="museum-room" style="--accent:#f4a261;">
+                <div class="museum-artifact" data-popup="echanges">
+                    <div class="museum-artifact-icon">🌐</div>
+                    <h2>Échanges & Mondialisation</h2>
+                    <p>Les échanges entre peuples ont enrichi les cultures, favorisé l'innovation et rapproché l'humanité à l'ère moderne.</p>
+                </div>
+            </div>
+        </section>
+        <section class="museum-experience">
+            <h2>Une visite immersive</h2>
+            <p>
+                Imaginez-vous déambulant dans les salles d’un musée, chaque salle vous plongeant dans une facette de l’évolution culturelle de l’Homme moderne.<br>
+                <span class="museum-quote">«&nbsp;La culture, c’est ce qui fait de nous des humains.&nbsp;»</span>
+            </p>
+            <a href="acceuil.html" class="museum-btn">Retour à l'accueil</a>
+        </section>
+    </main>
+    <!-- Popup musée -->
+    <div class="museum-popup-bg" id="popupBg">
+        <div class="museum-popup" id="popupContent">
+            <button class="close-btn" id="closePopupBtn" type="button">✕</button>
+            <div id="popupInner"></div>
+        </div>
+    </div>
+    <!-- Popup contact -->
+    <div id="contactPopup" class="popup-contact" style="display:none;">
+        <h2>Contact</h2>
+        <p>Pour toute question, écris à :<br>
+            <a href="mailto:theo.gaudino@lpo-eme.fr">theo.gaudino@lpo-eme.fr</a>
+        </p>
+        <button id="closeContactBtn" type="button">Fermer</button>
+    </div>
+    <footer class="museum-footer">
+        <p>&copy; 2025 Musée virtuel de l'évolution culturelle. Tous droits réservés.</p>
+    </footer>
+    <script src="page4.js"></script>
+    <script>
+        // Popup contact
+        document.getElementById('miniContact').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('contactPopup').style.display = 'block';
+        };
+        document.getElementById('closeContactBtn').onclick = function() {
+            document.getElementById('contactPopup').style.display = 'none';
+        };
+    </script>
+</body>
+</html>

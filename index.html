@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion requise</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="hide">
+<div class="login-box" id="loginBox">
+    <h2>Connexion requise</h2>
+    <input type="text" id="loginUser" placeholder="Nom d'utilisateur" autocomplete="username">
+    <div class="password-container">
+        <input type="password" id="loginPass" placeholder="Mot de passe" autocomplete="current-password">
+        <span class="toggle-password" onclick="toggleLoginPasswordVisibility()">&#x1F441;</span>
+    </div>
+    <button id="loginBtn">Se connecter</button>
+    <div class="login-error" id="loginError"></div>
+    <a href="#" id="showRegister">Créer un compte</a>
+</div>
+
+<div class="register-box" id="registerBox" style="display:none;">
+    <h2>Créer un compte</h2>
+    <input type="text" id="registerUser" placeholder="Nom d'utilisateur" autocomplete="new-username">
+    <div class="password-container">
+        <input type="password" id="registerPass" placeholder="Mot de passe" autocomplete="new-password">
+        <span class="toggle-password" onclick="toggleRegisterPasswordVisibility()">&#x1F441;</span>
+    </div>
+    <div class="password-container">
+        <input type="password" id="registerPassConfirm" placeholder="Confirmer le mot de passe" autocomplete="new-password">
+        <span class="toggle-password" onclick="toggleRegisterConfirmPasswordVisibility()">&#x1F441;</span>
+    </div>
+    <div class="password-rules">
+        Le mot de passe doit contenir <b>au moins 8 caractères</b>, <b>une majuscule</b>, <b>une minuscule</b> et <b>un chiffre</b>.
+    </div>
+    <button id="registerBtn">S'inscrire</button>
+    <div class="register-error" id="registerError"></div>
+    <div class="register-success" id="registerSuccess"></div>
+    <a href="#" id="showLogin">Se connecter</a>
+</div>
+<script>
+    const USER = "LEGOAT";
+    const PASS = "TOTOLEGOAT";
+
+    function toggleLoginPasswordVisibility() {
+        var passwordInput = document.getElementById("loginPass");
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+    function toggleRegisterPasswordVisibility() {
+        var passwordInput = document.getElementById("registerPass");
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+    function toggleRegisterConfirmPasswordVisibility() {
+        var passwordInput = document.getElementById("registerPassConfirm");
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+
+    window.onload = function() {
+        // Si déjà connecté, va direct à l'accueil
+        if(sessionStorage.getItem('isConnected') === 'yes') {
+            window.location.href = "Page1.html";
+            return;
+        }
+        document.body.classList.remove('hide');
+
+        // Connexion
+        document.getElementById('loginBtn').onclick = function() {
+            const user = document.getElementById('loginUser').value.trim();
+            const pass = document.getElementById('loginPass').value;
+            const error = document.getElementById('loginError');
+            error.textContent = "";
+
+            if (
+                (user === USER && pass === PASS) ||
+                (user === localStorage.getItem('user') && pass === localStorage.getItem('pass'))
+            ) {
+                sessionStorage.setItem('isConnected', 'yes');
+                window.location.href = "Page1.html";
+            } else {
+                error.textContent = "Identifiant ou mot de passe incorrect !";
+            }
+        };
+
+        document.getElementById('loginPass').addEventListener('keydown', function(e){
+            if(e.key === "Enter") document.getElementById('loginBtn').click();
+        });
+        document.getElementById('loginUser').addEventListener('keydown', function(e){
+            if(e.key === "Enter") document.getElementById('loginBtn').click();
+        });
+
+        // Affichage inscription
+        document.getElementById('showRegister').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('registerBox').style.display = '';
+            document.getElementById('registerError').textContent = "";
+            document.getElementById('registerSuccess').textContent = "";
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginBox').style.display = '';
+            document.getElementById('registerBox').style.display = 'none';
+            document.getElementById('registerError').textContent = "";
+            document.getElementById('registerSuccess').textContent = "";
+        });
+
+        // Inscription (stockage local)
+        document.getElementById('registerBtn').onclick = function() {
+            const user = document.getElementById('registerUser').value.trim();
+            const pass = document.getElementById('registerPass').value;
+            const passConfirm = document.getElementById('registerPassConfirm').value;
+            const error = document.getElementById('registerError');
+            const success = document.getElementById('registerSuccess');
+            error.textContent = "";
+            success.textContent = "";
+
+            // Règles : au moins 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            if (pass !== passConfirm) {
+                error.textContent = "Les mots de passe ne correspondent pas !";
+                return;
+            }
+
+            if (user === "" || pass === "") {
+                error.textContent = "Veuillez remplir tous les champs !";
+                return;
+            }
+
+            if (!regex.test(pass)) {
+                error.textContent = "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre.";
+                return;
+            }
+
+            localStorage.setItem('user', user);
+            localStorage.setItem('pass', pass);
+
+            success.textContent = "Compte créé avec succès ! Vous pouvez vous connecter.";
+
+            setTimeout(() => {
+                document.getElementById('loginBox').style.display = '';
+                document.getElementById('registerBox').style.display = 'none';
+            }, 1200);
+        };
+    };
+</script>
+</body>
+</html>
