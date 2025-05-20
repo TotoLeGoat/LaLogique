@@ -390,3 +390,41 @@ body {
         text-align: center;
     }
 }
+/* ...existing code... */
+
+/* Réseaux sociaux latéraux */
+.social-sidebar {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 1000;
+}
+
+.social-btn {
+    background: #232946;
+    border: 2px solid #ffe066;
+    border-radius: 0 16px 16px 0;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    box-shadow: 0 2px 12px #ffe06644;
+    transition: background 0.2s, transform 0.18s;
+    cursor: pointer;
+    font-size: 2em;
+    color: #ffe066;
+    text-decoration: none;
+}
+
+.social-btn:hover {
+    background: #ffe066;
+    color: #232946;
+    transform: translateX(8px) scale(1.08);
+    box-shadow: 0 4px 24px #ffe06699;
+}
